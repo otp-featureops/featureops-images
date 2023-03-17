@@ -13,7 +13,6 @@ COPY --chown=airflow:root /dags /opt/airflow/dags
 USER airflow
 
 COPY env.list /usr/local/airflow/env.list
-RUN set -a && . /usr/local/airflow/env.list && set +a && env
 COPY startup.sh /startup.sh
 RUN pip install databand[airflow,airflow-auto-tracking,postgres]
 
