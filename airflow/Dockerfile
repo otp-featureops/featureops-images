@@ -8,7 +8,7 @@ RUN apt-get update \
   && apt-get autoremove -yqq --purge \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-COPY --chown=airflow:root /dags /opt/airflow/dags
+COPY --chown=airflow:root /dags /tmp/dags
 
 USER airflow
 
