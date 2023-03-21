@@ -17,5 +17,7 @@ set -a && . /usr/local/airflow/env.list && set +a && env
 echo "Coping Dags..."
 cp -r /tmp/dags .
 
+echo "Starting Airflow scheduler..."
+airflow scheduler -D
 echo "Starting Airflow webserver..."
 airflow webserver
