@@ -14,11 +14,13 @@ with DAG(
     
     clone_repo = BashOperator(
         task_id='clone_repo',
-        bash_command='git clone <repository URL> <destination folder>',
+        bash_command='if [ ! -d "/opt/airflow/dags/airflow-dags" ]; then cd /opt/airflow/dags && git clone https://jiangxuemichelle:{{ var.value.git_token }}@github.com/otp-featureops/airflow-dags.git; fi',
     )
     
     pull_changes = BashOperator(
         task_id='pull_changes',
-        bash_command='cd <destination folder> && git pull',
+        bash_command='cd /opt/airflow/dags/airflow-dags && git pull',
     )
+
+    clone_repo >> pull_changes
         
